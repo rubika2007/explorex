@@ -1,94 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Tourist Place</title>
+<title>Tourist Login</title>
 <link rel="stylesheet" href="style.css">
 </head>
+<body class="login-bg">
 
-<body>
+<div class="container">
+    <form class="form-box" onsubmit="login(event)">
+        <h1>Tourist Explorer</h1>
 
-<header>
+        <input type="email" placeholder="Email" required>
 
-<nav>
+        <input type="password" placeholder="Password" required>
 
-<h2>Tourist Explorer</h2>
+        <button type="submit">Login</button>
 
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#gallery">Gallery</a></li>
-<li><a href="#attractions">Attractions</a></li>
-</ul>
-
-</nav>
-
-</header>
-
-
-<section id="home" class="hero">
-
-<h1>Explore Beautiful Destinations</h1>
-
-<p>Travel • Discover • Enjoy</p>
-
-<button>Start Journey</button>
-
-</section>
-
-
-<section id="about">
-
-<h1>About</h1>
-
-<p>
-Discover amazing places around the world,
-experience nature, culture and unforgettable adventures.
-</p>
-
-</section>
-
-
-<section id="gallery">
-
-<h1>Gallery</h1>
-
-<div class="gallery">
-
-<img src="https://picsum.photos/300/200?1">
-
-<img src="https://picsum.photos/300/200?2">
-
-<img src="https://picsum.photos/300/200?3">
-
+        <p>New User?
+        <a href="register.html">Register Here</a>
+       
+        <a href="home.html">Continue as Guest</a>
+        </p>
+    </form>
 </div>
+<script>
 
-</section>
+function login(event){
 
+event.preventDefault();
 
-<section id="attractions">
+window.location.href="home.html";
 
-<h1>Top Attractions</h1>
+}
 
-<div class="cards">
-
-<div class="card">
-<h2>Beaches</h2>
-<p>Enjoy sea views and sunset.</p>
-</div>
-
-<div class="card">
-<h2>Mountains</h2>
-<p>Adventure and trekking.</p>
-</div>
-
-<div class="card">
-<h2>Historical Sites</h2>
-<p>Explore culture and history.</p>
-</div>
-
-</div>
-
-</section>
-
+</script>
 </body>
 </html>
