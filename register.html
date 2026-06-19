@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="register-bg">
+
+<div class="container">
+
+<form class="form-box" onsubmit="register(event)">
+
+<h1>Create Account</h1>
+
+<input type="text" placeholder="Full Name" required>
+
+<input type="email" placeholder="Email" required>
+
+<input type="password" placeholder="Password" required>
+
+<input type="password" placeholder="Confirm Password" required>
+
+<button type="submit">
+Register
+</button>
+
+<p>
+Already have account?
+<a href="login.html">Login</a>
+</p>
+
+</form>
+
+</div>
+<script>
+function register(event)
+{
+event.preventdefault();
+window.location.href="index.html";
+}
+</script>
+</body>
+</html>
