@@ -1,26 +1,26 @@
 from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
 from flask_mail import Mail, Message
-
+import os
 app = Flask(__name__)
 
 # ---------------- MAIL CONFIG ----------------
 
+
+
+
+
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT']=587
 app.config['MAIL_USE_TLS']=True
-app.config['MAIL_USERNAME']='rubikar678@gmail.com'
-app.config['MAIL_PASSWORD']='cdar lhbe ygjy cuvk'
-
+app.config['MAIL_USERNAME']=os.getenv("MAIL_USERNAME")
+app.config['MAIL_PASSWORD']=os.getenv("MAIL_PASSWORD")
 mail=Mail(app)
-
-# ---------------- DATABASE ----------------
-
 db=mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="explorex"
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
 )
 
 cursor=db.cursor()
@@ -374,7 +374,7 @@ def place_details(id):
 @app.route("/search_places")
 def search_places():
 
-    query = request.args.get("q").lower()
+    query = request.args.get("q","").lower()
 
     # Database search
     cursor.execute("""
