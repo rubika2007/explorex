@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MaduraiExploreX🚩 Admin Dashboard</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/r.jpg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+<header>
+
+    <nav class="nav-bg">
+
+        <a href="{{ url_for('home') }}">
+            <h2>MaduraiExploreX🚩</h2>
+        </a>
+
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('places') }}">Places</a></li>
+            <li><a href="{{ url_for('about') }}">About us</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('login') }}">Admin</a></li>
+        </ul>
+
+    </nav>
+
+</header>
+<section class="yellow">
+    <h1>{{ place[1] }}</h1>
+</section>
+<section class="car">
+
+    <div class="card">
+             <img src="{{ url_for('static',filename='images/'+place[6]) }}">
+             <h1>{{ place[1] }}</h1>
+     </div>
+</section>
+<section class="car">
+     <div class="info">
+        <p>📍 {{ place[2] }}</p>
+        <p>🕢 {{ place[3] }}</p>
+       <p>Weather: {{ place[4] }}</p>
+       
+     </div>        
+</section>
+<section class="car">
+     <div class="info">
+        <h2>About {{ place[1] }}</h2>
+          <p> {{ place[5] }}</p>
+    </div>        
+</section>       
+<section class="car">
+    <div class="card">
+<h2>Location</h2>
+
+<iframe
+src="{{ place[7] }}"
+width="600"
+height="400">
+</iframe>
+</div>
+</section>
+
+<!-- FOOTER -->
+<section class="shoes">
+
+    <div class="shoe">
+        <h6>Call Us</h6>
+        <p>📞 +91 8148508006</p>
+    </div>
+
+    <div class="shoe">
+        <h6>Email Us</h6>
+        <p>📧 mail@explorex.in</p>
+    </div>
+
+</section>
+
+<section class="finish">
+
+    <div class="ends">
+
+        <div class="end1">
+            <p>Copyright © 2026 by ExploreX✈️. All Rights Reserved.</p>
+        </div>
+
+        <div class="end2">
+            <p>Privacy Policy | Terms & Conditions | Cancellation & Refund Policy</p>
+        </div>
+
+    </div>
+
+</section>
+</body>
+</html>

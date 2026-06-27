@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MaduraiExploreX🚩 Admin Login</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/r.jpg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header>
+
+    <nav class="nav-bg">
+
+        <a href="{{ url_for('home') }}">
+            <h2>MaduraiExploreX🚩</h2>
+        </a>
+
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('places') }}">Places</a></li>
+            <li><a href="{{ url_for('about') }}">About us</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('login') }}">Admin</a></li>
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<!-- LOGIN SECTION -->
+
+<section class="login-bg">
+
+    <div class="hello">
+        <h1>Welcome to Admin Panel!</h1>
+    </div>
+
+    <div class="container">
+
+        <form class="form-box"
+              method="POST"
+              action="{{ url_for('login') }}">
+
+            <h1>ExploreX✈️</h1>
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Admin Email"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Admin Password"
+                required
+            >
+
+            <button type="submit">
+                Login
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<section class="shoes">
+
+    <div class="shoe">
+        <h6>Call Us</h6>
+        <p>📞 +91 8148508006</p>
+    </div>
+
+    <div class="shoe">
+        <h6>Email Us</h6>
+        <p>📧 mail@explorex.in</p>
+    </div>
+
+</section>
+
+
+<section class="finish">
+
+    <div class="ends">
+
+        <div class="end1">
+            <p>Copyright © 2026 by ExploreX✈️. All Rights Reserved.</p>
+        </div>
+
+        <div class="end2">
+            <p>
+                Privacy Policy |
+                Terms & Conditions |
+                Cancellation & Refund Policy
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

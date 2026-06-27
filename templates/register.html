@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="register-bg">
+
+<div class="container">
+
+<form class="form-box" onsubmit="register(event)">
+
+<h1>Create Account</h1>
+
+<input type="text" placeholder="Full Name" required>
+
+<input type="email" placeholder="Email" required>
+
+<input type="password" placeholder="Password" required>
+
+<input type="password" placeholder="Confirm Password" required>
+
+<button type="submit">
+Register
+</button>
+
+<p>
+Already have account?
+<a href="index.html">Login</a>
+</p>
+
+</form>
+
+</div>
+<script>
+function register(event)
+{
+event.preventdefault();
+window.location.href="home.html";
+}
+</script>
+</body>
+<section class="galleries">
+
+    <div class="photo1">
+        <a href="{{ url_for('meenakshi') }}">
+            <img src="{{ url_for('static', filename='images/meenakshi.jpg') }}">
+        </a>
+        <h6>📍 Madurai, Tamil Nadu</h6>
+        <a href="{{ url_for('meenakshi') }}">
+            <h4>Meenakshi Amman Temple</h4>
+        </a>
+    </div>
+
+    <div class="photo2">
+        <a href="{{ url_for('alagar') }}">
+            <img src="{{ url_for('static', filename='images/alagar.webp') }}">
+        </a>
+        <h6>📍 Alagar Kovil, Madurai</h6>
+        <a href="{{ url_for('alagar') }}">
+            <h4>Alagar Kovil</h4>
+        </a>
+    </div>
+
+    <div class="photo3">
+        <a href="{{ url_for('pala') }}">
+            <img src="{{ url_for('static', filename='images/pala.jpg') }}">
+        </a>
+        <h6>📍 Alagar Hills, Madurai</h6>
+        <a href="{{ url_for('pala') }}">
+            <h4>Palamudhircholai Kovil</h4>
+        </a>
+    </div>
+
+    <div class="photo4">
+        <a href="{{ url_for('mariamman') }}">
+            <img src="{{ url_for('static', filename='images/mari.jpg') }}">
+        </a>
+        <h6>📍 Madurai</h6>
+        <a href="{{ url_for('mariamman') }}">
+            <h4>Teppakulam Mariamman Kovil</h4>
+        </a>
+    </div>
+
+</section>
+</html>
+<div id="editform" style="display:none;">
+
+    <form action="/edit_place" method="POST">
+
+        <input type="hidden" name="id" id="edit_id">
+
+        <input type="text" name="place_name" id="edit_name">
+        <input type="text" name="location" id="edit_location">
+        <input type="text" name="timings" id="edit_timings">
+        <input type="text" name="weather" id="edit_weather">
+        <input type="text" name="map_link" id="edit_map">
+        <textarea name="description" id="edit_desc"></textarea>
+        <input type="text" name="image" id="edit_image">
+
+        <button type="submit">Update Place</button>
+
+    </form>
+</div>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MaduraiExploreX🚩 Admin Dashboard</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/r.jpg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-bg">
+
+<!-- NAVBAR -->
+
+<header>
+
+    <nav class="nav-bg">
+
+        <a href="{{ url_for('home') }}">
+            <h2>MaduraiExploreX🚩</h2>
+        </a>
+
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+
+            <li><a href="{{ url_for('admin') }}">Admin</a></li>
+
+            <li><a href="{{ url_for('login') }}">Logout</a></li>
+        </ul>
+
+    </nav>
+
+</header>
+
+<!-- DASHBOARD -->
+
+<section class="dashboard">
+
+    <h1>Admin Dashboard</h1>
+
+    <div class="dashboard-cards">
+
+    <div class="dashboard-card">
+
+        <h2>📍 Total Places</h2>
+
+        <p>{{ total_places }}</p>
+
+    </div>
+
+
+    <div class="dashboard-card">
+
+        <h2>👥 Registered Users</h2>
+
+        <p>{{ total_users }}</p>
+
+    </div>
+
+
+    <div class="dashboard-card">
+
+        <h2>📩 User Queries</h2>
+
+        <p>{{ query_count }}</p>
+
+    </div>
+
+
+    <div class="dashboard-card">
+
+        <h2>⭐ Feedback</h2>
+
+        <p>{{ feedback_count }}</p>
+
+    </div>
+</section>
+<section class="dashboard">
+<div class="buttons">
+
+<button onclick="document.getElementById('addform').style.display='block'">
+Add Place
+</button>
+
+</div>
+
+
+<div id="addform" style="display:none;">
+
+<form action="/add_place" method="POST">
+
+<input type="text"
+name="place_name"
+placeholder="Place Name">
+
+<input type="text"
+name="location"
+placeholder="Location">
+
+<input type="text"
+name="timings"
+placeholder="Timings">
+
+<input type="text"
+name="weather"
+placeholder="Weather">
+<input
+type="text"
+name="map_link"
+placeholder="Google map embed link">
+<textarea
+name="description"
+placeholder="Description">
+</textarea>
+
+<input type="text"
+name="image"
+placeholder="Image file name">
+
+<button type="submit">
+
+Save Place
+
+</button>
+
+</form>
+
+</div>
+</section>
+<div id="editform" style="display:none;">
+
+    <h2>Edit Place</h2>
+
+    <form action="/edit_place" method="POST">
+
+        <input type="hidden" name="id" id="edit_id">
+
+        <input type="text" name="place_name" id="edit_name" placeholder="Place Name">
+        <input type="text" name="location" id="edit_location" placeholder="Location">
+        <input type="text" name="timings" id="edit_timings" placeholder="Timings">
+        <input type="text" name="weather" id="edit_weather" placeholder="Weather">
+
+        <textarea name="description" id="edit_desc" placeholder="Description"></textarea>
+
+        <input type="text" name="image" id="edit_image" placeholder="Image">
+        <input type="text" name="map_link" id="edit_map" placeholder="Map Link">
+
+        <button type="submit">Update Place</button>
+
+    </form>
+</div>
+<!-- LIST OF PLACES -->
+<section class="dashboard">
+    <h2>Manage Places</h2>
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Place</th>
+        <th>Location</th>
+        <th>Timings</th>
+        <th>Weather</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for place in places %}
+    <tr>
+        <td>{{ place[1] }}</td>
+        <td>{{ place[2] }}</td>
+        <td>{{ place[3] }}</td>
+        <td>{{ place[4] }}</td>
+
+        <td>
+           <button onclick="openEditForm(
+    '{{ place[0] }}',
+    '{{ place[1] }}',
+    '{{ place[2] }}',
+    '{{ place[3] }}',
+    '{{ place[4] }}',
+    '{{ place[5] }}',
+    '{{ place[6] }}',
+   
+)">
+Edit
+</button>
+
+           <form action="/delete_place/{{ place[0] }}" method="POST" style="display:inline;">
+    <button type="submit" onclick="return confirm('Delete this place?')">
+        Delete
+    </button>
+</form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</section>
+
+    <!-- USER ENQUIRIES -->
+
+    <section class="query-section" id="queries">
+
+        <h2>User Enquiries</h2>
+         <table border="1" cellpadding="10">
+
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Place</th>
+<th>Purpose</th>
+<th>Message</th>
+<th>Reply</th>
+<th>Status</th>
+</tr>
+
+{% for user in users %}
+
+<tr>
+
+<td>{{ user.name }}</td>
+<td>{{ user.email }}</td>
+<td>{{ user.place }}</td>
+<td>{{ user.purpose }}</td>
+<td>{{ user.message }}</td>
+<td>{{ user.status }}</td>
+<td>
+
+<form action="/reply/{{ user.id }}"
+method="POST">
+
+<textarea
+name="reply"
+placeholder="Type reply">
+</textarea>
+
+<button type="submit">
+
+Send
+
+</button>
+
+</form>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+       
+
+    </section>
+
+</section>
+<script>
+function openEditForm(id, name, location, timings, weather, desc, image, map) {
+
+    document.getElementById("editform").style.display = "block";
+
+    document.getElementById("edit_id").value = id;
+    document.getElementById("edit_name").value = name;
+    document.getElementById("edit_location").value = location;
+    document.getElementById("edit_timings").value = timings;
+    document.getElementById("edit_weather").value = weather;
+    document.getElementById("edit_desc").value = desc;
+    document.getElementById("edit_image").value = image;
+    document.getElementById("edit_map").value = map;
+}
+</script>
+</body>
+
+</html>

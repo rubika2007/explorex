@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MaduraiExploreX🚩 Places</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='images/r.jpg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        /* simple dropdown style */
+        #suggestions {
+            background: white;
+            border: 1px solid #ccc;
+            width: 300px;
+            position: absolute;
+            z-index: 999;
+        }
+
+        #suggestions div {
+            padding: 8px;
+        }
+
+        #suggestions div:hover {
+            background: #eee;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <nav class="nav-bg">
+
+        <a href="{{ url_for('home') }}">
+            <h2>MaduraiExploreX🚩</h2>
+        </a>
+
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('places') }}">Places</a></li>
+            <li><a href="{{ url_for('about') }}">About us</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('login') }}">Admin</a></li>
+        </ul>
+
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="yellow">
+    <h1>Explore Madurai</h1>
+</section>
+
+<!-- SEARCH (FIXED PART) -->
+<section class="search-section">
+
+    <div class="destination-box">
+
+        <div class="icon">
+            <i class="fa-solid fa-location-dot"></i>
+        </div>
+
+        <div class="text">
+
+            <label>Destination</label>
+
+            <!-- ✅ FIX: added ID -->
+            <div class="search-wrapper">
+
+                <input type="text"
+                       id="searchInput"
+                       placeholder="Where are you going?">
+
+                <!-- ✅ FIX: dropdown box -->
+                <div id="suggestions"></div>
+
+            </div>
+
+        </div>
+
+        <button>SEARCH</button>
+
+    </div>
+
+</section>
+
+<!-- PLACES -->
+<section class="temples">
+    <h2>Famous Temples</h2>
+</section>
+<section class="galleries">
+
+    <div class="photo">
+        <a href="{{ url_for('meenakshi') }}">
+            <img src="{{ url_for('static', filename='images/meenakshi.jpg') }}">
+        </a>
+        <h6>📍 Madurai, Tamil Nadu</h6>
+        <a href="{{ url_for('meenakshi') }}">
+            <h4>Meenakshi Amman Temple</h4>
+        </a>
+    </div>
+
+    <div class="photo">
+        <a href="{{ url_for('alagar') }}">
+            <img src="{{ url_for('static', filename='images/alagar.webp') }}">
+        </a>
+        <h6>📍 Alagar Kovil, Madurai</h6>
+        <a href="{{ url_for('alagar') }}">
+            <h4>Alagar Kovil</h4>
+        </a>
+    </div>
+
+    <div class="photo">
+        <a href="{{ url_for('pala') }}">
+            <img src="{{ url_for('static', filename='images/pala.jpg') }}">
+        </a>
+        <h6>📍 Alagar Hills, Madurai</h6>
+        <a href="{{ url_for('pala') }}">
+            <h4>Palamudhircholai Kovil</h4>
+        </a>
+    </div>
+
+    <div class="photo">
+        <a href="{{ url_for('mariamman') }}">
+            <img src="{{ url_for('static', filename='images/mari5.jpg') }}">
+        </a>
+        <h6>📍Vandiyur Madurai</h6>
+        <a href="{{ url_for('mariamman') }}">
+            <h4>Teppakulam Mariamman Kovil</h4>
+        </a>
+        
+    </div>
+
+</section>
+<section class="temples">
+    <h2>Famous Hills & Nature Spots</h2>
+</section>
+<section class="galleries">
+
+    <div class="photo">
+        <a href="{{ url_for('samanar') }}">
+            <img src="{{ url_for('static', filename='images/samanar5.jpg') }}">
+        </a>
+        <h6>📍 Madurai, Tamil Nadu</h6>
+        <a href="{{ url_for('samanar') }}">
+            <h4>Samanar Hills</h4>
+        </a>
+    </div>
+
+    <div class="photo">
+        <a href="{{ url_for('yanaimalai') }}">
+            <img src="{{ url_for('static', filename='images/yanaimalai.jpg') }}">
+        </a>
+        <h6>📍 Narasingam main Rd, Madurai</h6>
+        <a href="{{ url_for('yanaimalai') }}">
+            <h4>Yanaimalai Hills</h4>
+        </a>
+    </div>
+
+    <div class="photo">
+        <a href="{{ url_for('nagamalai') }}">
+            <img src="{{ url_for('static', filename='images/nagamalai.jpg') }}">
+        </a>
+        <h6>📍 madurai-theni highway, Madurai</h6>
+        <a href="{{ url_for('pala') }}">
+            <h4>Nagamalai Hills</h4>
+        </a>
+    </div>
+
+</section>
+<section class="temples">
+    <h2>Famous Historical & Heritage Spots</h2>
+</section>
+<section class="galleries">
+    <div class="photo">
+        <a href="{{ url_for('thirumalai') }}">
+            <img src="{{ url_for('static', filename='images/thirumalai.webp') }}">
+        </a>
+        <h6>📍 madurai, Madurai</h6>
+        <a href="{{ url_for('thirumalai') }}">
+            <h4>Thirumalai Nayakar Mahal</h4>
+        </a>
+    </div>
+    <div class="photo">
+        <a href="{{ url_for('gandhi') }}">
+            <img src="{{ url_for('static', filename='images/gandhi5.jpg') }}">
+        </a>
+        <h6>📍 madurai, TamilNadu</h6>
+        <a href="{{ url_for('gandhi') }}">
+            <h4>Gandhi Memorial Museum</h4>
+        </a>
+    </div>
+    <div class="photo">
+        <a href="{{ url_for('keeladi') }}">
+            <img src="{{ url_for('static', filename='images/keeladi.jpg') }}">
+        </a>
+        <h6>📍 madurai, TamilNadu</h6>
+        <a href="{{ url_for('keeladi') }}">
+            <h4>Keeladi Museum</h4>
+        </a>
+    </div>
+</section>
+<section class="temples">
+    <h2>Famous Churches & Mosques Spots</h2>
+</section>
+<section class="galleries">
+    <div class="photo">
+        <a href="{{ url_for('mary') }}">
+            <img src="{{ url_for('static', filename='images/mary6.webp') }}">
+        </a>
+        <h6>📍 madurai, TamilNadu</h6>
+        <a href="{{ url_for('mary') }}">
+            <h4>St Mary's Cathedral</h4>
+        </a>
+    </div>
+    
+    <div class="photo">
+        <a href="{{ url_for('mosque') }}">
+            <img src="{{ url_for('static', filename='images/mosque5.jpg') }}">
+        </a>
+        <h6>📍 madurai, TamilNadu</h6>
+        <a href="{{ url_for('mosque') }}">
+            <h4>Goripalayam Dargah</h4>
+        </a>
+    </div>
+</section>
+<section class="temples">
+    <h2>Famous Food & Restaurants Areas</h2>
+</section>
+<section class="galleries">
+    <div class="photo">
+        <a href="{{ url_for('konar') }}">
+            <img src="{{ url_for('static', filename='images/konar5.jpg') }}">
+        </a>
+        <h6>📍 madurai, TamilNadu</h6>
+        <a href="{{ url_for('konar') }}">
+            <h4>Konar Kadai</h4>
+        </a>
+    </div>
+    
+    <div class="photo">
+        <a href="{{ url_for('murugan') }}">
+            <img src="{{ url_for('static', filename='images/murugan5.jpg') }}">
+        </a>
+        <h6>📍 madurai, TamilNadu</h6>
+        <a href="{{ url_for('murugan') }}">
+            <h4>Murugan Idli Shop</h4>
+        </a>
+    </div>
+    <div class="photo">
+        <a href="{{ url_for('sabarees') }}">
+            <img src="{{ url_for('static', filename='images/sabarees5.jpg') }}">
+        </a>
+        <h6>📍 madurai, TamilNadu</h6>
+        <a href="{{ url_for('sabarees') }}">
+            <h4>Sabarees</h4>
+        </a>
+    </div>
+     <div class="photo">
+        <a href="{{ url_for('amman') }}">
+            <img src="{{ url_for('static', filename='images/amman6.jpg') }}">
+        </a>
+        <h6>📍 madurai, TamilNadu</h6>
+        <a href="{{ url_for('amman') }}">
+            <h4>Amman Mess</h4>
+        </a>
+    </div>
+
+</section>
+
+<section class="galleries">
+
+{% for place in places %}
+
+<div class="photo">
+
+    <img src="{{ url_for('static',
+    filename='images/' + place[6]) }}"
+    class="place-img">
+
+    <h4>{{ place[1] }}</h4>
+
+    <a href="{{ url_for('place_details',id=place[0]) }}">
+        <button>View Details</button>
+    </a>
+
+</div>
+
+{% endfor %}
+</section>
+<!-- BUTTON -->
+<section class="button">
+    <p>For further queries:</p>
+
+    <a href="{{ url_for('contact') }}">
+        <button>Enquire Now</button>
+    </a>
+</section>
+
+<!-- ✅ SEARCH SCRIPT (FIXED) -->
+<script>
+const input = document.getElementById("searchInput");
+const box = document.getElementById("suggestions");
+
+input.addEventListener("input", function () {
+
+    let query = this.value;
+
+    if (query.length < 1) {
+        box.innerHTML = "";
+        return;
+    }
+
+    fetch("/search_places?q=" + query)
+    .then(res => res.json())
+    .then(data => {
+
+        box.innerHTML = "";
+
+        if (data.results.length === 0) {
+            box.innerHTML = "<p>No places found</p>";
+            return;
+        }
+
+        data.results.forEach(place => {
+
+            let div = document.createElement("div");
+
+            div.innerHTML = place.name;
+
+            div.style.cursor = "pointer";
+
+            div.onclick = function () {
+                window.location.href = place.url;
+            };
+
+            box.appendChild(div);
+        });
+    });
+});
+
+input.addEventListener("keydown", function(e) {
+
+    if (e.key === "Enter") {
+
+        let query = this.value;
+
+        fetch("/search_places?q=" + query)
+        .then(res => res.json())
+        .then(data => {
+
+            if (data.results.length > 0) {
+                // redirect to FIRST matching place detail page
+                window.location.href = data.results[0].url;
+            } else {
+                alert("No place found");
+            }
+        });
+    }
+});
+</script>
+
+<!-- FOOTER CONTACT -->
+<section class="shoes">
+
+    <div class="shoe">
+        <h6>Call Us</h6>
+        <p>📞 +91 8148508006</p>
+    </div>
+
+    <div class="shoe">
+        <h6>Email Us</h6>
+        <p>📧 mail@explorex.in</p>
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<section class="finish">
+
+    <div class="ends">
+
+        <div class="end1">
+            <p>Copyright © 2026 by ExploreX✈️. All Rights Reserved.</p>
+        </div>
+
+        <div class="end2">
+            <p>Privacy Policy | Terms & Conditions | Cancellation & Refund Policy</p>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>
