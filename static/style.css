@@ -835,3 +835,53 @@ th,td{
 th{
     background:#f4c542;
 }
+
+/* Mobile Responsive */
+
+@media screen and (max-width:768px){
+
+    .nav-bg{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .nav-bg ul{
+        flex-direction:column;
+        padding:0;
+    }
+
+    .destination-box{
+        width:90%;
+        flex-direction:column;
+        padding:15px;
+    }
+
+    .search-wrapper{
+        width:100%;
+    }
+
+    #searchInput{
+        width:100%;
+    }
+
+    .galleries{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .photo{
+        width:90%;
+        margin-bottom:20px;
+    }
+
+    .place-img{
+        width:100%;
+        height:auto;
+    }
+
+    .shoe{
+        width:100%;
+        text-align:center;
+    }
+}
