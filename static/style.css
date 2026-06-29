@@ -838,50 +838,65 @@ th{
 
 /* Mobile Responsive */
 
+/* MOBILE RESPONSIVE */
 @media screen and (max-width:768px){
 
-    .nav-bg{
-        flex-direction:column;
-        text-align:center;
-    }
+/* Navbar */
+.nav-bg{
+    flex-direction:column;
+    padding:10px;
+}
 
-    .nav-bg ul{
-        flex-direction:column;
-        padding:0;
-    }
+.nav-bg ul{
+    flex-direction:column;
+    gap:15px;
+    text-align:center;
+}
 
-    .destination-box{
-        width:90%;
-        flex-direction:column;
-        padding:15px;
-    }
+/* Hero section */
+.yellow h1{
+    font-size:40px;
+    text-align:center;
+}
 
-    .search-wrapper{
-        width:100%;
-    }
+/* Search box */
+.destination-box{
+    width:90%;
+    margin:auto;
+    flex-direction:column;
+    padding:15px;
+}
 
-    #searchInput{
-        width:100%;
-    }
+.search-wrapper{
+    width:100%;
+}
 
-    .galleries{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-    }
+#searchInput{
+    width:100%;
+}
 
-    .photo{
-        width:90%;
-        margin-bottom:20px;
-    }
+/* Cards */
+.galleries{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+}
 
-    .place-img{
-        width:100%;
-        height:auto;
-    }
+.photo{
+    width:80%;
+    margin:15px auto;
+}
 
-    .shoe{
-        width:100%;
-        text-align:center;
-    }
+/* Images */
+.place-img{
+    width:100%;
+    height:auto;
+}
+
+/* Footer */
+.ends{
+    flex-direction:column;
+    text-align:center;
+}
+
 }
