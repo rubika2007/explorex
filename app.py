@@ -318,15 +318,15 @@ def edit_place():
 def delete_place(id):
         db = get_db_connection()
         cursor = db.cursor()
-    cursor.execute(
-    "DELETE FROM places WHERE id=%s",
-    (id,)
-    )
+        cursor.execute(
+        "DELETE FROM places WHERE id=%s",
+        (id,)
+        )
 
-    db.commit()
-    cursor.close()
-    db.close()
-    return redirect(url_for("admin"))
+        db.commit()
+        cursor.close()
+        db.close()
+        return redirect(url_for("admin"))
 
 
 # ---------------- REPLY MAIL ----------------
@@ -374,19 +374,19 @@ def reply(id):
 @app.route("/place/<int:id>")
 def place_details(id):
      db = get_db_connection()
-    cursor = db.cursor()
-    cursor.execute(
-    "SELECT * FROM places WHERE id=%s",
-    (id,)
-    )
+     cursor = db.cursor()
+     cursor.execute(
+     "SELECT * FROM places WHERE id=%s",
+     (id,)
+     )
 
-    place=cursor.fetchone()
-    cursor.close()
-    db.close()
-    return render_template(
-    "place_details.html",
-    place=place
-    )
+     place=cursor.fetchone()
+     cursor.close()
+     db.close()
+     return render_template(
+     "place_details.html",
+     place=place
+     )
 @app.route("/search_places")
 def search_places():
     db = get_db_connection()
