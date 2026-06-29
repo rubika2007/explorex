@@ -37,7 +37,20 @@ def home():
 
 @app.route("/places")
 def places():
-    return render_template("packages.html")
+
+    db = get_db_connection()
+    cursor = db.cursor()
+
+    cursor.execute("SELECT * FROM places")
+    places = cursor.fetchall()
+
+    cursor.close()
+    db.close()
+
+    return render_template(
+        "packages.html",
+        places=places
+    )
 
 # ---------------- TEMPLE PAGES ----------------
 
@@ -195,8 +208,8 @@ def admin():
             "place":row[3],
             "purpose":row[4],
             "message":row[5],
-            "reply":row[6],
-            "status":row[7]
+            "reply":row[6]if len(row) > 6 else "",
+            "status":row[7]if len(row) > 7 else "Pending"
         })
 
 
@@ -432,12 +445,12 @@ def search_places():
          {"name":"Sree Sabarees Hotel","url":"/sabarees"}
 
     ]
-    cursor.close()
-    db.close()
+    
     for place in manual_places:
         if query in place["name"].lower():
             data.append(place)
-
+    cursor.close()
+    db.close()
     return {"results": data}
 if __name__=="__main__":
     app.run(debug=True)
