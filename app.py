@@ -16,14 +16,14 @@ app.config['MAIL_USE_TLS']=True
 app.config['MAIL_USERNAME']=os.getenv("MAIL_USERNAME")
 app.config['MAIL_PASSWORD']=os.getenv("MAIL_PASSWORD")
 mail=Mail(app)
-db=mysql.connector.connect(
-    host=os.getenv("DB_HOST"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    database=os.getenv("DB_NAME")
-)
-
-cursor=db.cursor()
+def get_db_connection():
+    return mysql.connector.connect(
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        autocommit=True
+    )
 
 
 # ---------------- HOME ----------------
@@ -135,10 +135,12 @@ def submit():
         purpose,
         message
     )
-
+    db = get_db_connection()
+    cursor = db.cursor()
     cursor.execute(sql,values)
     db.commit()
-
+    cursor.close()
+    db.close()
     return redirect(url_for("contact"))
 
 
@@ -151,17 +153,19 @@ def login():
 
         email=request.form["email"]
         password=request.form["password"]
-
+        db = get_db_connection()
+        cursor = db.cursor()
         query="""
         SELECT * FROM admin
         WHERE email=%s
         AND password=%s
         """
-
+        
         cursor.execute(query,(email,password))
 
         admin=cursor.fetchone()
-
+        cursor.close()
+        db.close()
         if admin:
             return redirect(url_for("admin"))
 
@@ -174,7 +178,8 @@ def login():
 
 @app.route("/admin")
 def admin():
-
+    db = get_db_connection()
+    cursor = db.cursor()
     cursor.execute("SELECT * FROM contact")
     data=cursor.fetchall()
 
@@ -219,7 +224,8 @@ def admin():
 
     cursor.execute("SELECT * FROM places")
     places=cursor.fetchall()
-
+    cursor.close()
+    db.close()
 
     return render_template(
         "admin.html",
@@ -262,11 +268,13 @@ def add_place():
         image,
         map_link
     )
-
+    db = get_db_connection()
+    cursor = db.cursor()
     cursor.execute(sql,values)
 
     db.commit()
-
+    cursor.close()
+    db.close()
     return redirect(url_for("admin"))
 
 # ---------------- EDIT PLACE ----------------
@@ -281,7 +289,8 @@ def edit_place():
     description = request.form["description"]
     image = request.form["image"]
     map_link = request.form["map_link"]
-
+    db = get_db_connection()
+    cursor = db.cursor()
     cursor.execute("""
         UPDATE places
         SET place_name=%s,
@@ -298,7 +307,8 @@ def edit_place():
     ))
 
     db.commit()
-
+    cursor.close()
+    db.close()
     return redirect(url_for("admin"))
 
 
@@ -306,14 +316,16 @@ def edit_place():
 
 @app.route("/delete_place/<int:id>", methods=["POST"])
 def delete_place(id):
-
+        db = get_db_connection()
+        cursor = db.cursor()
     cursor.execute(
     "DELETE FROM places WHERE id=%s",
     (id,)
     )
 
     db.commit()
-
+    cursor.close()
+    db.close()
     return redirect(url_for("admin"))
 
 
@@ -321,7 +333,8 @@ def delete_place(id):
 
 @app.route("/reply/<int:id>",methods=["POST"])
 def reply(id):
-
+    db = get_db_connection()
+    cursor = db.cursor()
     reply_text=request.form["reply"]
 
     cursor.execute(
@@ -354,26 +367,30 @@ def reply(id):
     msg.body=reply_text
 
     mail.send(msg)
-
+    cursor.close()
+    db.close()
     return redirect(url_for("admin"))
 
 @app.route("/place/<int:id>")
 def place_details(id):
-
+     db = get_db_connection()
+    cursor = db.cursor()
     cursor.execute(
     "SELECT * FROM places WHERE id=%s",
     (id,)
     )
 
     place=cursor.fetchone()
-
+    cursor.close()
+    db.close()
     return render_template(
     "place_details.html",
     place=place
     )
 @app.route("/search_places")
 def search_places():
-
+    db = get_db_connection()
+    cursor = db.cursor()
     query = request.args.get("q","").lower()
 
     # Database search
@@ -415,7 +432,8 @@ def search_places():
          {"name":"Sree Sabarees Hotel","url":"/sabarees"}
 
     ]
-
+    cursor.close()
+    db.close()
     for place in manual_places:
         if query in place["name"].lower():
             data.append(place)
